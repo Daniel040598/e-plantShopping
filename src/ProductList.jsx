@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
-import { addItem, removeItem, updateQuantity } from './CartSlice';
+import { addItem } from './CartSlice';
 
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
@@ -236,11 +236,11 @@ function ProductList({ onHomeClick }) {
     }
 
     const [addedToCart, setAddedToCart] = useState({});
-    const handleAddToCart = (plant) => {
-        dispatchEvent(addItem(plant));
+    const handleAddToCart = (item) => {
+        dispatchEvent(addItem(item));
         setAddedToCart((prevState) => ({
             ...prevState,
-            [plant.name]: true,
+            [item.name]: true,
         }));
     };
 
@@ -295,7 +295,7 @@ function ProductList({ onHomeClick }) {
                 <div className="product-title">{plant.name}</div>
                 <div className="product-description">{plant.description}</div>
                 <div className="product-price">{plant.cost}</div>
-                <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                <button  className="product-button" onClick={() => handleAddToCart(item)}>Add to Cart</button>
             </div>
             ))}
         </div>
